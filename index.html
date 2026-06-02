@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>단꿈아이 주간업무보고 대시보드</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 28px 24px; }
+  .header h1 { font-size: 20px; font-weight: 700; }
+  .header .subtitle { font-size: 13px; opacity: 0.7; margin-top: 6px; }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 28px 20px; }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+  .summary-card { background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; }
+  .summary-card .val { font-size: 26px; font-weight: 900; color: #0f3460; }
+  .summary-card .lbl { font-size: 12px; color: #888; margin-top: 4px; }
+
+  .section-title { font-size: 15px; font-weight: 800; color: #1a1a2e; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .section-title::before { content: ''; width: 4px; height: 16px; background: #4361ee; border-radius: 2px; display: inline-block; }
+
+  .week-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .week-card { background: white; border-radius: 12px; padding: 18px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; transition: all 0.2s; border-left: 5px solid; }
+  .week-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .week-card.latest { border-color: #4361ee; }
+  .week-card.past { border-color: #d0d0d0; }
+  .week-info .date { font-size: 16px; font-weight: 800; color: #1a1a2e; }
+  .week-info .range { font-size: 12px; color: #888; margin-top: 3px; }
+  .week-badge { background: #4361ee; color: white; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 10px; white-space: nowrap; }
+  .week-card.past .week-badge { background: #e8eaf0; color: #888; }
+  .week-arrow { font-size: 18px; color: #4361ee; margin-left: 12px; }
+  .week-card.past .week-arrow { color: #ccc; }
+
+  .carry-section { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 28px; }
+  .carry-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 13px; align-items: flex-start; }
+  .carry-item:last-child { border-bottom: none; }
+  .carry-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+  .dot-warn { background: #f77f00; }
+  .dot-ok { background: #06d6a0; }
+  .carry-text { flex: 1; color: #444; line-height: 1.5; }
+  .carry-dept { font-size: 11px; color: #888; margin-top: 2px; }
+  .carry-status { font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .carry-status.done { color: #06d6a0; }
+  .carry-status.ing { color: #f77f00; }
+
+  .empty-msg { text-align: center; padding: 20px; color: #aaa; font-size: 13px; }
+
+  @media (max-width: 480px) {
+    .summary-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .summary-card .val { font-size: 20px; }
+    .header h1 { font-size: 17px; }
+    .week-info .date { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📋 단꿈아이 주간업무보고</h1>
+  <div class="subtitle">매주 월요일 업데이트 · 링크가 있는 분은 외부에서도 확인 가능</div>
+</div>
+
+<div class="container">
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="val" id="totalWeeks">1</div>
+      <div class="lbl">누적 주차</div>
+    </div>
+    <div class="summary-card">
+      <div class="val" id="totalTasks">136</div>
+      <div class="lbl">이번주 업무</div>
+    </div>
+    <div class="summary-card">
+      <div class="val" id="carryCount">0</div>
+      <div class="lbl">미완료 이월</div>
+    </div>
+  </div>
+
+  <div class="section-title">주차별 대시보드</div>
+  <div class="week-list" id="weekList">
+    <a href="./주간보고_20260601.html" class="week-card latest">
+      <div class="week-info">
+        <div class="date">2026년 6월 1주차</div>
+        <div class="range">전주 5.26~5.29 · 이번주 6.1~6.5</div>
+      </div>
+      <span class="week-badge">최신</span>
+      <span class="week-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="section-title">미완료 이월 업무 추적</div>
+  <div class="carry-section" id="carrySection">
+    <div class="empty-msg">이번 주가 첫 주차입니다. 다음 주부터 이월 항목이 표시됩니다.</div>
+  </div>
+
+</div>
+
+<script>
+  // 주차 수 업데이트
+  const cards = document.querySelectorAll('.week-card');
+  document.getElementById('totalWeeks').textContent = cards.length;
+</script>
+
+</body>
+</html>
