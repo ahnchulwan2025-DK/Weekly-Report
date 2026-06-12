@@ -73,7 +73,7 @@
   .final { background:linear-gradient(135deg,#0f3460,#16213e); color:white; }
   .final .section-title { color:white; }
   .final .section-title .no { background:rgba(255,255,255,0.2); }
-  .final p { font-size:14px; opacity:0.92; margin-bottom:10px; }
+  .final p { font-size:17px; font-weight:600; opacity:0.95; margin-bottom:12px; line-height:1.7; }
   .final b { color:#7ee0c0; }
 
   .footer { text-align:center; font-size:12px; color:#aaa; margin-top:30px; }
@@ -97,29 +97,27 @@
 
 <div class="container">
 
-  <!-- ============ 1. 매출 점검 ============ -->
+  <!-- ============ 1. 종합 의견 ============ -->
+  <div class="section final">
+    <div class="section-title"><span class="no">1</span> 종합 의견</div>
+    <p>매출은 <b>출판(누계 92%)이 가장 안정적</b>이고, 교육(86%)은 전환율 개선이라는 질적 신호가 동반되고 있습니다.
+    반면 <b>뮤지컬(58%)과 IP라이선싱(14%)은 계획대비·전년대비 모두 미달</b>로, 라인업 축소와 공격적 계획 설정이 겹친 구조적 문제입니다.</p>
+    <p>업무 측면에서는 플랫폼·교육의 진척이 좋으나, <b>토스 심사·TTS 세팅 등 선행 조건</b>과
+    <b>자회사 설립·복댕이 등 기한 임박 항목</b>이 다음 주 점검 포인트입니다.</p>
+    <p>전주 대비 추적에서는 <b>완료 보고 없이 사라진 업무 2건(파주시 삼릉 협의, 인사평가제도 변경안)</b>이 발견되어,
+    종결인지 누락인지 담당 실 확인이 필요합니다.</p>
+  </div>
+
+  <!-- ============ 2. 매출 점검 ============ -->
   <div class="section">
-    <div class="section-title"><span class="no">1</span> 사업부문별 매출 점검 — 계획대비 · 전년대비 동일 기준</div>
+    <div class="section-title"><span class="no">2</span> 사업부문별 매출 점검 — 계획대비 · 전년대비 동일 기준</div>
 
     <div class="summary-box">
       <p>출판 · 교육 · 뮤지컬 · IP라이선싱 4개 사업을 <b>같은 기준(계획대비 / 전년대비)</b>으로 점검합니다.
-      당월(6월) 수치는 6/7~6/8 기준 집계라 <b>월초 시점 효과</b>가 포함되어 있으며, 추세 판단은 누계 기준이 적합합니다.</p>
+      월초 시점 효과로 인한 왜곡을 피하기 위해 <b>1~6월 누계 기준</b>으로 점검합니다.</p>
     </div>
 
-    <div class="sub-title">① 6월 당월 (6/7 기준 · 억원)</div>
-    <table>
-      <thead>
-        <tr><th>부문</th><th>전년도 6월</th><th>26년 계획</th><th>26년 실적</th><th>계획대비</th><th>전년대비</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="dept-tag">📚 출판</td><td>3.0</td><td>4.5</td><td>0.9</td><td class="rate-bad">19%</td><td class="rate-bad">29%</td></tr>
-        <tr><td class="dept-tag">🎓 교육</td><td>2.6</td><td>7.3</td><td>1.1</td><td class="rate-bad">15%</td><td class="rate-bad">41%</td></tr>
-        <tr><td class="dept-tag">🎭 뮤지컬</td><td>6.5</td><td>1.4</td><td>1.0</td><td class="rate-warn">74%</td><td class="rate-bad">15%</td></tr>
-        <tr><td class="dept-tag">💡 IP라이선싱</td><td>0.6</td><td>0.1</td><td>0.03</td><td class="rate-bad">17%</td><td class="rate-bad">5%</td></tr>
-      </tbody>
-    </table>
-
-    <div class="sub-title">② 1~6월 누계 (억원)</div>
+    <div class="sub-title">① 1~6월 누계 (억원)</div>
     <table>
       <thead>
         <tr><th>부문</th><th>전년도 1~6월</th><th>26년 계획</th><th>26년 실적</th><th>계획대비</th><th>전년대비</th></tr>
@@ -133,7 +131,7 @@
     </table>
     <div class="note">※ 교육 전년도 누계는 시트에 미기재되어 전주 보고서의 전년 1~5월(73.2억) + 전년 6월(2.6억)로 산출한 추정치입니다.</div>
 
-    <div class="sub-title">③ 부문별 미달 원인 &amp; 체크포인트</div>
+    <div class="sub-title">② 부문별 미달 원인 &amp; 체크포인트</div>
 
     <div class="why-card">
       <div class="head">📚 출판 — 누계 92%, 가장 안정적</div>
@@ -171,7 +169,7 @@
 
   <!-- ============ 2. 업무 진행 진단 ============ -->
   <div class="section">
-    <div class="section-title"><span class="no">2</span> 실별 업무 진행 진단 (매출 외)</div>
+    <div class="section-title"><span class="no">3</span> 실별 업무 진행 진단 (매출 외)</div>
 
     <div class="diag-card border-ip">
       <div class="dept">🎭 IP사업실 <span class="prog">진행률 75%</span></div>
@@ -225,7 +223,7 @@
 
   <!-- ============ 3. 전주 대비 소멸·후퇴 업무 추적 ============ -->
   <div class="section">
-    <div class="section-title"><span class="no">3</span> 전주 대비 소멸 · 후퇴 업무 추적</div>
+    <div class="section-title"><span class="no">4</span> 전주 대비 소멸 · 후퇴 업무 추적</div>
 
     <div class="summary-box">
       <p>전주(6/1) 보고서에서 <b>진행 중(100% 미만)이던 업무가 이번 주 보고에서 사라졌거나, 진행률이 오히려 후퇴한 항목</b>을
@@ -290,7 +288,7 @@
 
   <!-- ============ 4. 리스크 & 권고 ============ -->
   <div class="section">
-    <div class="section-title"><span class="no">4</span> 리스크 &amp; 권고</div>
+    <div class="section-title"><span class="no">5</span> 리스크 &amp; 권고</div>
     <div class="risk-grid">
       <div class="risk-card risk-high">
         <div class="risk-level" style="color:#e63946">🔴 우선순위 높음</div>
@@ -310,20 +308,9 @@
     </div>
   </div>
 
-  <!-- ============ 5. 종합 의견 ============ -->
-  <div class="section final">
-    <div class="section-title"><span class="no">5</span> 종합 의견</div>
-    <p>매출은 <b>출판(누계 92%)이 가장 안정적</b>이고, 교육(86%)은 전환율 개선이라는 질적 신호가 동반되고 있습니다.
-    반면 <b>뮤지컬(58%)과 IP라이선싱(14%)은 계획대비·전년대비 모두 미달</b>로, 라인업 축소와 공격적 계획 설정이 겹친 구조적 문제입니다.</p>
-    <p>업무 측면에서는 플랫폼·교육의 진척이 좋으나, <b>토스 심사·TTS 세팅 등 선행 조건</b>과
-    <b>자회사 설립·복댕이 등 기한 임박 항목</b>이 다음 주 점검 포인트입니다.</p>
-    <p>전주 대비 추적에서는 <b>완료 보고 없이 사라진 업무 2건(파주시 삼릉 협의, 인사평가제도 변경안)</b>이 발견되어,
-    종결인지 누락인지 담당 실 확인이 필요합니다.</p>
-  </div>
-
   <div class="footer">
     본 보고서는 주간업무 대시보드(2026.06.08) 데이터를 기반으로 정리되었습니다.<br>
-    당월 수치는 6/7~6/8 기준 집계로 월초 시점 효과를 포함하며, ※ 표시는 추정치입니다.
+    수치는 6/7~6/8 기준 집계이며, ※ 표시는 추정치입니다.
   </div>
 
 </div>
