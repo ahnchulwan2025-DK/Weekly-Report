@@ -71,12 +71,12 @@
       <div class="lbl">누적 주차</div>
     </div>
     <div class="summary-card">
-      <div class="val" id="totalTasks">146</div>
+      <div class="val" id="totalTasks">120</div>
       <div class="lbl">이번주 업무</div>
     </div>
     <div class="summary-card">
-      <div class="val" id="carryCount">0</div>
-      <div class="lbl">미완료 이월</div>
+      <div class="val" id="carryCount" style="color:#e63946">2</div>
+      <div class="lbl">소멸 업무 확인필요</div>
     </div>
   </div>
 
@@ -108,9 +108,36 @@
     </a>
   </div>
 
-  <div class="section-title">미완료 이월 업무 추적</div>
+  <div class="section-title">전주 대비 소멸 · 후퇴 업무 추적 (6/8 기준)</div>
   <div class="carry-section" id="carrySection">
-    <div class="empty-msg">이번 주가 첫 주차입니다. 다음 주부터 이월 항목이 표시됩니다.</div>
+    <div class="carry-item">
+      <div class="carry-dot dot-warn"></div>
+      <div class="carry-text">파주시 삼릉 한국사 존 셋팅 협의 — 전주 20% 진행 → 이번주 보고에서 소멸
+        <div class="carry-dept">IP사업실 IP팀 · 중단/보류/이관 여부 확인 필요</div>
+      </div>
+      <div class="carry-status ing">확인필요</div>
+    </div>
+    <div class="carry-item">
+      <div class="carry-dot dot-warn"></div>
+      <div class="carry-text">인사평가제도 변경안 — 전주 80%(기한 5/29) → 이번주 보고에서 소멸
+        <div class="carry-dept">경영지원실 인사팀 · 완료 여부 확인 필요</div>
+      </div>
+      <div class="carry-status ing">확인필요</div>
+    </div>
+    <div class="carry-item">
+      <div class="carry-dot dot-warn"></div>
+      <div class="carry-text">과학 탐구형 학습평가 시스템 — 전주 80% → 이번주 70%로 후퇴 (방향 재정비)
+        <div class="carry-dept">교육사업실 · 일정 재산정 관찰</div>
+      </div>
+      <div class="carry-status ing">관찰중</div>
+    </div>
+    <div class="carry-item">
+      <div class="carry-dot dot-ok"></div>
+      <div class="carry-text">그 외 전주 진행 업무는 정상 이월 확인 — 상세는 인사이트 보고서 3번 섹션 참고
+        <div class="carry-dept"><a href="./인사이트보고서_20260608.html" style="color:#4361ee;">📈 6월 2주차 인사이트 보고서 바로가기</a></div>
+      </div>
+      <div class="carry-status done">정상</div>
+    </div>
   </div>
 
 </div>
