@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>단꿈아이 주간 인사이트 보고서 2026.06.29</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #f0f2f5; color: #1a1a2e; line-height: 1.6; }
+
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 32px 40px; }
+  .header h1 { font-size: 23px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .subtitle { font-size: 13px; opacity: 0.7; margin-top: 6px; }
+  .header .backlink { display:inline-block; margin-top:14px; font-size:12px; background:rgba(255,255,255,0.12); padding:6px 14px; border-radius:16px; text-decoration:none; color:#cdd9ff; }
+  .header .backlink:hover { background:rgba(255,255,255,0.22); }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  .section { background: white; border-radius: 14px; padding: 28px 30px; margin-bottom: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .section-title { font-size: 17px; font-weight: 800; color: #1a1a2e; margin-bottom: 18px; display: flex; align-items: center; gap: 9px; }
+  .section-title .no { background:#0f3460; color:white; width:26px; height:26px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; flex-shrink:0; }
+  .sub-title { font-size:14px; font-weight:800; color:#0f3460; margin:20px 0 10px; }
+  .sub-title:first-of-type { margin-top:4px; }
+
+  .summary-box { background:#f7f9ff; border-left:5px solid #4361ee; border-radius:10px; padding:16px 20px; margin-bottom:18px; }
+  .summary-box p { font-size:13.5px; color:#333; }
+  .summary-box b { color:#0f3460; }
+
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:4px; }
+  th { background:#1a1a2e; color:white; font-weight:700; padding:10px 10px; text-align:center; }
+  td { padding:9px 10px; border:1px solid #e8eaf0; vertical-align:middle; text-align:center; }
+  td.l { text-align:left; }
+  tr:nth-child(even) td { background:#fafbff; }
+  .dept-tag { font-weight:800; }
+  .rate-bad { color:#e63946; font-weight:800; }
+  .rate-warn { color:#c2410c; font-weight:800; }
+  .rate-good { color:#06875a; font-weight:800; }
+  .note { font-size:11.5px; color:#999; margin-top:8px; }
+
+  .why-card { border-radius:10px; padding:14px 18px; margin-bottom:10px; border:1px solid #e8eaf0; background:#fcfcfe; }
+  .why-card .head { font-size:13.5px; font-weight:800; color:#1a1a2e; margin-bottom:4px; }
+  .why-card .body { font-size:12.5px; color:#555; }
+  .why-card .body b { color:#1a1a2e; }
+  .chk { color:#0f3460; font-weight:700; }
+
+  .diag-card { border-radius:12px; padding:18px 20px; margin-bottom:14px; border:1px solid #e8eaf0; }
+  .diag-card .dept { font-size:15px; font-weight:800; margin-bottom:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .diag-card .prog { font-size:12px; font-weight:800; padding:2px 10px; border-radius:10px; background:#e8eaf0; color:#555; }
+  .diag-card ul { list-style:none; }
+  .diag-card li { font-size:12.5px; color:#555; padding:4px 0 4px 16px; position:relative; }
+  .diag-card li::before { content:'·'; position:absolute; left:4px; font-weight:900; color:#888; }
+  .diag-card li b { color:#1a1a2e; }
+  .diag-card .insight { font-size:12.5px; color:#444; margin-top:10px; background:#f7f9ff; border-radius:8px; padding:10px 14px; }
+  .diag-card .insight b { color:#0f3460; }
+  .flag-red { color:#e63946; font-weight:800; }
+  .flag-orange { color:#c2410c; font-weight:800; }
+  .flag-green { color:#06875a; font-weight:800; }
+  .border-ip { border-left:5px solid #7b2d8b; }
+  .border-pub { border-left:5px solid #f77f00; }
+  .border-edu { border-left:5px solid #4361ee; }
+  .border-plat { border-left:5px solid #06d6a0; }
+  .border-mgmt { border-left:5px solid #e63946; }
+
+  .risk-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .risk-card { border-radius:12px; padding:18px; }
+  .risk-high { background:#fff0f0; border-top:4px solid #e63946; }
+  .risk-mid { background:#fff8f0; border-top:4px solid #f77f00; }
+  .risk-low { background:#fffdf0; border-top:4px solid #e8c000; }
+  .risk-level { font-size:12px; font-weight:800; margin-bottom:6px; }
+  .risk-title { font-size:14px; font-weight:800; color:#1a1a2e; margin-bottom:8px; }
+  .risk-action { font-size:12px; color:#666; }
+
+  .final { background:linear-gradient(135deg,#0f3460,#16213e); color:white; }
+  .final .section-title { color:white; }
+  .final .section-title .no { background:rgba(255,255,255,0.2); }
+  .final p { font-size:17px; font-weight:600; opacity:0.95; margin-bottom:12px; line-height:1.7; }
+  .final b { color:#7ee0c0; }
+
+  .footer { text-align:center; font-size:12px; color:#aaa; margin-top:30px; }
+
+  @media (max-width:720px) {
+    .header, .container { padding-left:16px; padding-right:16px; }
+    .risk-grid { grid-template-columns:1fr; }
+    .section { padding:20px 16px; }
+    table { font-size:11px; }
+    th, td { padding:7px 5px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📈 단꿈아이 주간업무 인사이트 보고서</h1>
+  <div class="subtitle">기준: 2026년 6월 5주차 (보고일 6/29) · 전주 6.22~6.26 / 이번주 6.29~7.3 · 상반기 마감</div>
+  <a href="./주간보고_20260629.html" class="backlink">← 원본 주간보고 대시보드 보기</a>
+</div>
+
+<div class="container">
+
+  <!-- ============ 1. 종합 의견 ============ -->
+  <div class="section final">
+    <div class="section-title"><span class="no">1</span> 종합 의견 (상반기 마감)</div>
+    <p>상반기 마감 시점에서 <b>전사 매출 누계 달성률이 70%→93%로 크게 올랐습니다</b>. 다만 이 상승은
+    두 가지가 겹친 결과로, 분리해서 봐야 합니다: ① <b>출판·교육의 실제 매출 증가</b>(신간 배본 반영),
+    ② <b>IP라이선싱 계획을 9.2억→0.9억으로 하향 조정</b>한 데 따른 분모 축소.</p>
+    <p>실질 성과는 분명합니다. 출판이 누계 106%로 계획을 넘겼고, 교육도 89.5%(전환율 34.1%)로 견조합니다.
+    반면 <b>뮤지컬(58%)은 여전히 미달</b>이며, IP라이선싱은 숫자상 153%지만 이는 목표를 낮춘 것이지 실적이 좋아진 것은 아닙니다.</p>
+    <p>업무 측면에서는 플랫폼 결제·정산·환불이 모두 배포 준비 완료됐고, 전주 대비 <b>사라진 업무 1건(원격학원 강사 등록)</b>과
+    <b>후퇴 1건(삼국지 적벽대전 90→70%)</b>이 확인됐습니다. 특히 6/8에 "소멸"로 표시했던 <b>인사평가 변경안이 이번에 '보고 완료'로 마무리</b>돼 과거 미결이 해소됐습니다.</p>
+  </div>
+
+  <!-- ============ 2. 매출 점검 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="no">2</span> 사업부문별 매출 점검 — 상반기(1~6월) 마감</div>
+
+    <div class="summary-box">
+      <p>출판 · 교육 · 뮤지컬 · IP라이선싱 4개 사업의 1~6월 누계를 <b>같은 기준(계획대비 / 전년대비)</b>으로 마감 점검합니다.
+      이번 주 두 가지 큰 변화: <b>① 출판 6월 신간 매출 반영(누계 92%→106%), ② IP라이선싱 계획 하향 조정(9.2억→0.9억)</b>.</p>
+    </div>
+
+    <div class="sub-title">① 1~6월 누계 (억원)</div>
+    <table>
+      <thead>
+        <tr><th>부문</th><th>전년도 1~6월</th><th>26년 계획</th><th>26년 실적</th><th>계획대비</th><th>전년대비</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="dept-tag">📚 출판</td><td>29.9</td><td>30.0</td><td>31.8</td><td class="rate-good">106% ▲</td><td class="rate-good">106%</td></tr>
+        <tr><td class="dept-tag">🎓 교육</td><td>75.8 ※</td><td>78.4</td><td>70.2</td><td class="rate-good">89.5%</td><td class="rate-good">93% ※</td></tr>
+        <tr><td class="dept-tag">🎭 뮤지컬</td><td>13.8</td><td>12.7</td><td>7.4</td><td class="rate-bad">58%</td><td class="rate-bad">54%</td></tr>
+        <tr><td class="dept-tag">💡 IP라이선싱</td><td>2.5</td><td>0.9 ▼</td><td>1.4</td><td class="rate-good">153% ⚠</td><td class="rate-bad">56%</td></tr>
+      </tbody>
+    </table>
+    <div class="note">※ 교육 전년 누계는 추정치. ⚠ IP라이선싱 153%는 계획을 9.2억→0.9억으로 하향한 결과로, 실적(1.4억)은 전년(2.5억)의 56% 수준입니다. 전년대비로 보면 여전히 부진입니다.</div>
+
+    <div class="sub-title">② 부문별 마감 점검 &amp; 체크포인트</div>
+
+    <div class="why-card">
+      <div class="head">📚 출판 — 누계 106%, 계획 초과 달성 (이번 주 최대 반등)</div>
+      <div class="body">
+        6월 신간(수학3권·세계사29권·한국사 첫걸음 등) 배본 매출이 반영되며 당월 19%→113%, 누계 27.5억→31.8억으로 급반등. 4개 부문 중 유일하게 계획 초과.<br>
+        <span class="chk">✔ 체크포인트:</span> 세계사29권 파본(500~1,000부) 배상액이 하반기 손익에 미칠 영향. 7월 그리스로마16권 신간으로 모멘텀 유지 여부.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="head">🎓 교육 — 누계 89.5%, 질·양 모두 개선</div>
+      <div class="body">
+        6월 당월 34.4%→50.8%로 추가 상승, 누계 70.2억(실측치). 유료전환률 누계 34.1%로 전년(16.0%) 대비 2배 이상. 자녀회원 누계 15,702명.<br>
+        <span class="chk">✔ 체크포인트:</span> 잔여 계획 갭 8.2억원을 하반기에 만회하려면 7월 신규 과목(수학 오픈, 영어 준비) 매출 기여가 관건.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="head">🎭 뮤지컬 — 누계 58%, 4개 부문 중 유일하게 명확한 미달</div>
+      <div class="body">
+        상반기 투어 축소로 계획 12.7억 대비 7.4억. 성남아트센터 공연(6/28) 완료, 삼국지 적벽대전 기획 진행 중이나 70%로 후퇴.<br>
+        <span class="chk">✔ 체크포인트:</span> 하반기 공연 라인업(적벽대전 등)의 실제 매출화 시점과 규모. 현 추세로는 연간 계획 달성 난망.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="head">💡 IP라이선싱 — 계획 하향 조정 (9.2억→0.9억)</div>
+      <div class="body">
+        4주 연속 미달 지적되던 계획이 0.9억으로 현실화됨. 달성률은 14%→153%로 바뀌었으나 <b>이는 실적 개선이 아닌 목표 재설정</b>. 실적 1.4억은 전년(2.5억)의 56% 수준으로, 절대 규모는 여전히 작습니다.<br>
+        <span class="chk">✔ 체크포인트:</span> 복댕이·지나쌤 캐릭터 라이선싱 계약 완료가 하반기 신규 매출원이 될 수 있을지. 하향된 계획이 적정 수준인지 연간 관점 재검토.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. 업무 진행 진단 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="no">3</span> 실별 업무 진행 진단 (매출 외)</div>
+
+    <div class="diag-card border-plat">
+      <div class="dept">💻 플랫폼개발실 <span class="prog">진행률 86% · 최고</span></div>
+      <ul>
+        <li><span class="flag-green">배포 준비 완료</span> — 정산개선·환불·정보보안 모두 운영 배포 준비 100%, 과목추가 수학 운영 QA 완료</li>
+        <li><span class="flag-green">인프라</span> — Flyway 도입·테이블 최적화 운영 반영 완료</li>
+        <li><span class="flag-red">외부 의존·병목</span> — 월정기 결제 <b>토스 심사 보류</b>(추가서류 준비), 과목추가 영어 25%(TTS 4~5천건 선행)</li>
+      </ul>
+      <div class="insight">💡 상반기 개발 과제가 거의 마무리됐습니다. 단 <b>토스 심사가 '지연'에서 '보류'로 악화</b>되어 추가서류 제출이 필요한 상태 — 7/1 오픈이 불투명합니다. 결제 모델 오픈 지연 시 월정기 매출 인식도 밀리므로 우선 관리 대상입니다.</div>
+    </div>
+
+    <div class="diag-card border-edu">
+      <div class="dept">🎓 교육사업실 <span class="prog">진행률 64%</span></div>
+      <ul>
+        <li><span class="flag-green">오픈·완료</span> — 정주연 수학 프리패스/교재 페이지 오픈(7/1), 학부모리포트 2차·프리패스 패키지·골든벨 완료</li>
+        <li><span class="flag-green">진전</span> — 독해 기본 20%→70%(서비스 문항), 한국사 첫걸음 강의 84%</li>
+        <li><span class="flag-orange">초기 단계</span> — 영어 콘텐츠 24%, 과학 강사계약 7월 준비 — 신규 과목군 여전히 초기</li>
+      </ul>
+      <div class="insight">💡 수학 오픈이 임박해 교육 매출 회복의 핵심 동력이 가시화됐습니다. 다만 <b>영어·과학은 7월에도 초기 단계</b>로, 하반기 매출 기여 시점이 늦어질 수 있습니다.</div>
+    </div>
+
+    <div class="diag-card border-pub">
+      <div class="dept">📚 출판개발실 <span class="prog">진행률 58%</span></div>
+      <ul>
+        <li><span class="flag-green">발간 완료</span> — 그리스로마16권 인쇄 완료(95%), 마케팅용 데이터 생성</li>
+        <li><span class="flag-green">진전</span> — 한국사38권 40%→50%(채색·문항 개발)</li>
+        <li><span class="flag-red">품질 이슈</span> — <b>세계사29권 파본 500~1,000부</b>(책등 스크래치), 9월말 배상 협의</li>
+      </ul>
+      <div class="insight">💡 6월 신간 매출이 출판 실적을 끌어올린 반면, <b>세계사29권 파본은 품질·비용 리스크</b>입니다. 정상재고 6,100부는 확보됐으나 배상 협의 결과가 하반기 손익에 반영될 예정으로 추적이 필요합니다.</div>
+    </div>
+
+    <div class="diag-card border-ip">
+      <div class="dept">🎭 IP사업실 <span class="prog">진행률 78%</span></div>
+      <ul>
+        <li><span class="flag-green">계약 완료</span> — 복댕이 캐릭터 계약서(크리에이티브섬 전달), 지나쌤 캐릭터 부가판권 계약서 초안</li>
+        <li><span class="flag-green">진전</span> — 복댕이 상표등록 20%→50%</li>
+        <li><span class="flag-red">후퇴</span> — 삼국지 적벽대전 기획서 90%→70% (기획 재검토로 추정)</li>
+      </ul>
+      <div class="insight">💡 3주 정체였던 복댕이가 계약 완료로 마무리되고 지나쌤 캐릭터까지 확장됐습니다. <b>이 라이선싱 계약들이 하반기 IP 매출의 신규 원천</b>이 될지 주목됩니다. 적벽대전 기획 후퇴는 공연 라인업과 직결돼 확인이 필요합니다.</div>
+    </div>
+
+    <div class="diag-card border-mgmt">
+      <div class="dept">🏢 경영지원실 <span class="prog">진행률 88%</span></div>
+      <ul>
+        <li><span class="flag-green">상반기 마감</span> — 5월 확정 마감, 회계기준별 손익계산서, 하반기 유동성 재추정 완료</li>
+        <li><span class="flag-green">완료</span> — 인사평가 변경안 보고 완료, 노사협의회 개최, 단꿈m 사업계획 보고</li>
+        <li><span class="flag-orange">진행</span> — 규정 개정 80%, IR 덱 피칭용 90%</li>
+      </ul>
+      <div class="insight">💡 상반기 재무·인사 마감이 대부분 완료. 특히 <b>6/8에 '소멸'로 추적했던 인사평가 변경안이 보고 완료</b>로 마무리되어, 당시 소멸이 누락이 아니라 정상 진행이었음이 확인됐습니다.</div>
+    </div>
+  </div>
+
+  <!-- ============ 4. 전주 대비 소멸·후퇴 업무 추적 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="no">4</span> 전주 대비 소멸 · 후퇴 업무 추적</div>
+
+    <div class="summary-box">
+      <p>전주(6/22)에 진행 중이던 업무가 이번 주(6/29) 보고에서 <b>사라졌거나 진행률이 후퇴한 항목</b>을 전수 대조했습니다.
+      소멸 1건·후퇴 1건이 확인됐고, 과거 미결(인사평가 변경안)이 해소됐습니다.</p>
+    </div>
+
+    <div class="sub-title">① 보고서에서 사라진 업무 — 확인 필요</div>
+    <table>
+      <thead>
+        <tr><th>업무</th><th>소속</th><th>전주 상태</th><th>이번주</th><th>확인 사항</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l dept-tag">🟡 원격학원 강사 등록 (정주연T)</td><td>경영지원실 인사팀</td>
+          <td>40% 진행</td><td class="rate-warn">시트에서 소멸</td>
+          <td class="l">정주연 수학 오픈(7/1)에 필요한 절차 — 완료됐는지, 보류인지 확인 필요</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">② 진행률이 후퇴한 업무</div>
+    <table>
+      <thead>
+        <tr><th>업무</th><th>소속</th><th>전주</th><th>이번주</th><th>해석</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l dept-tag">🟠 삼국지대모험 적벽대전 기획서</td><td>IP사업실 공연팀</td>
+          <td>90%</td><td class="rate-warn">70%</td>
+          <td class="l">기획 재검토에 따른 후퇴로 추정. 하반기 공연 라인업과 직결되므로 사유 확인 권장</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">③ 정상 처리 확인 (소멸 아님 / 과거 미결 해소)</div>
+    <div class="why-card">
+      <div class="body">
+        <span class="chk">✔ 완료 종결:</span> 부모 성장 클래스(6/22 100%), 차입조건 연장, 5월 확정 마감 — 완료되어 목록에서 정상 제외.<br>
+        <span class="chk">✔ 진화:</span> 자회사 설립 → 단꿈m 사업계획 보고 완료로 통합 진행.<br>
+        <span class="chk">✔ 과거 미결 해소:</span> <b>인사평가 변경안</b>은 6/8 보고서에서 "완료 보고 없이 소멸"로 확인필요 플래그했던 항목인데, 이번 주 <b>"보고 완료(6/26)"</b>로 확인됨. 당시 소멸은 누락이었고 실제로는 진행되어 마무리된 것으로 종결 처리합니다.
+      </div>
+    </div>
+
+    <div class="note">대조 방법: 전주(6/22)·이번주(6/29) 구글 시트 전수 비교 + 소멸 후보 항목별 시트 재질의 검증. 🟡 원격학원 강사 등록은 정주연 수학 오픈 직결 항목이라 확인을 권장합니다.</div>
+  </div>
+
+  <!-- ============ 5. 리스크 & 권고 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="no">5</span> 리스크 &amp; 권고</div>
+    <div class="risk-grid">
+      <div class="risk-card risk-high">
+        <div class="risk-level" style="color:#e63946">🔴 우선순위 높음</div>
+        <div class="risk-title">토스 심사 보류 · 세계사29권 파본</div>
+        <div class="risk-action">월정기 결제 7/1 오픈 불투명(추가서류) / 파본 500~1,000부 배상 협의가 하반기 손익에 영향</div>
+      </div>
+      <div class="risk-card risk-mid">
+        <div class="risk-level" style="color:#c2410c">🟠 우선순위 중간</div>
+        <div class="risk-title">뮤지컬 58% · IP 계획 적정성</div>
+        <div class="risk-action">뮤지컬 유일 명확한 미달, 적벽대전 기획 후퇴 / IP 하향 계획(0.9억)이 연간 관점에서 적정한지 재검토</div>
+      </div>
+      <div class="risk-card risk-low">
+        <div class="risk-level" style="color:#a08000">🟡 관찰 필요</div>
+        <div class="risk-title">신규 과목 초기 · 강사 등록 소멸</div>
+        <div class="risk-action">영어(24%)·과학(준비) 7월에도 초기 / 원격학원 강사 등록(정주연T) 소멸 — 수학 오픈 직결 확인</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    본 보고서는 주간업무 대시보드(2026.06.29) 데이터를 기반으로 정리되었습니다.<br>
+    교육 매출은 6/28 기준, 출판·뮤지컬·IP는 6월 마감 기준이며, ※ 표시는 추정치입니다.
+  </div>
+
+</div>
+</body>
+</html>
