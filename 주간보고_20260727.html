@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>단꿈아이 실별 주간업무 보고 2026.07.27</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 28px 40px; }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .subtitle { font-size: 13px; opacity: 0.75; margin-top: 6px; }
+  .header .ins-link { display:inline-block; margin-top:14px; font-size:16px; font-weight:800; background:rgba(255,255,255,0.15); border:2px solid #ffcc33; padding:10px 20px; border-radius:20px; text-decoration:none; color:#ffcc33; }
+  .header .ins-link:hover { background:#ffcc33; color:#1a1a2e; }
+
+  .tab-nav { background: white; border-bottom: 1px solid #e0e0e0; padding: 0 40px; display: flex; gap: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .tab-btn { padding: 16px 22px; border: none; background: none; cursor: pointer; font-size: 13px; font-weight: 600; color: #888; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .tab-btn.active { color: #0f3460; border-bottom-color: #0f3460; }
+  .tab-btn:hover { color: #0f3460; background: #f8f9ff; }
+
+  .tab-content { display: none; padding: 32px 40px; }
+  .tab-content.active { display: block; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+  .kpi-card { background: white; border-radius: 14px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-left: 5px solid; }
+  .kpi-card.blue { border-color: #4361ee; }
+  .kpi-card.green { border-color: #06d6a0; }
+  .kpi-card.orange { border-color: #f77f00; }
+  .kpi-card.purple { border-color: #7b2d8b; }
+  .kpi-card.red { border-color: #e63946; }
+  .kpi-label { font-size: 12px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-size: 26px; font-weight: 800; margin: 8px 0 4px; color: #1a1a2e; }
+  .kpi-sub { font-size: 12px; color: #aaa; }
+  .kpi-progress { margin-top: 14px; }
+  .kpi-progress-head { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; margin-bottom: 5px; }
+  .kpi-progress-head span:last-child { font-weight: 700; }
+  .kpi-progress-track { height: 8px; background: #eef0f3; border-radius: 6px; overflow: hidden; }
+  .kpi-progress-fill { height: 100%; border-radius: 6px; }
+  .kpi-up { color:#06875a; font-weight:700; }
+  .kpi-down { color:#e63946; font-weight:700; }
+
+  .section { background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .section-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  .section-title::before { content: ''; width: 4px; height: 18px; background: #4361ee; border-radius: 2px; display: inline-block; }
+
+  .team-progress-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .team-prog-card { background: white; border-radius: 12px; padding: 18px 20px; border: 1px solid #e8eaf0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .team-prog-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .team-prog-name { font-size: 14px; font-weight: 800; color: #1a1a2e; }
+  .team-prog-items { font-size: 12px; }
+  .prog-line { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #eee; align-items: center; }
+  .prog-line:last-child { border-bottom: none; }
+  .prog-line-name { color: #555; flex: 1; line-height: 1.4; }
+  .prog-line-mini { width: 80px; background: #f0f0f0; height: 6px; border-radius: 10px; overflow: hidden; margin: 0 10px; flex-shrink: 0; }
+  .prog-line-mini-fill { height: 100%; border-radius: 10px; }
+  .prog-line-val { color: #888; font-weight: 700; min-width: 36px; text-align: right; }
+  .prog-line-val.up { color: #06875a; }
+  .prog-line-val.down { color: #e63946; }
+
+  .c-high { background: #06d6a0; }
+  .c-mid { background: #4361ee; }
+  .c-low { background: #f77f00; }
+  .c-zero { background: #e63946; }
+
+  .perf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .perf-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center; }
+  .perf-dept { font-size: 14px; font-weight: 700; color: #555; margin-bottom: 12px; }
+  .perf-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: #777; }
+  .perf-achieve { font-size: 28px; font-weight: 900; margin: 8px 0; }
+  .perf-achieve.good { color: #06d6a0; }
+  .perf-achieve.warn { color: #f77f00; }
+  .perf-achieve.bad { color: #e63946; }
+  .progress-bar-wrap { background: #f0f0f0; border-radius: 20px; height: 8px; margin-top: 10px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 20px; }
+
+  .task-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .task-table th { background: #1a1a2e; color: white; font-weight: 700; padding: 10px 12px; text-align: left; border: 1px solid #1a1a2e; font-size: 12px; }
+  .task-table td { padding: 8px 12px; border: 1px solid #e8eaf0; vertical-align: middle; line-height: 1.5; }
+  .task-table tr:nth-child(even) { background: #fafbff; }
+  .task-table tr:hover { background: #f0f4ff; }
+  .status-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .s-done { background: #d1fae5; color: #065f46; }
+  .s-high { background: #dbe5ff; color: #1e40af; }
+  .s-mid { background: #ffedd5; color: #9a3412; }
+  .s-low { background: #fee2e2; color: #991b1b; }
+
+  .overview-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 28px; }
+  .dept-card { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; cursor: pointer; transition: transform 0.15s; }
+  .dept-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .dept-icon { font-size: 28px; margin-bottom: 8px; }
+  .dept-name { font-size: 13px; font-weight: 800; color: #1a1a2e; margin-bottom: 12px; }
+  .dept-progress { font-size: 24px; font-weight: 900; }
+  .dept-count { font-size: 12px; color: #888; margin-top: 4px; }
+  .dept-bar { background: #f0f0f0; height: 8px; border-radius: 20px; overflow: hidden; margin-top: 10px; }
+  .dept-bar-fill { height: 100%; border-radius: 20px; }
+
+  .issue-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .issue-card { border-radius: 10px; padding: 14px; }
+  .issue-card.red { background: #fff0f0; border-left: 4px solid #e63946; }
+  .issue-card.blue { background: #f0f4ff; border-left: 4px solid #4361ee; }
+  .issue-card.green { background: #f0fff8; border-left: 4px solid #06d6a0; }
+  .issue-card.orange { background: #fff8f0; border-left: 4px solid #f77f00; }
+  .issue-title { font-size: 12px; font-weight: 800; margin-bottom: 4px; }
+  .issue-body { font-size: 11px; color: #666; line-height: 1.6; }
+
+  @media (max-width: 900px) {
+    .kpi-grid, .overview-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-progress-grid, .perf-grid { grid-template-columns: 1fr; }
+    .tab-content { padding: 20px; }
+    .tab-nav { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>📋 단꿈아이 실별 주간업무 보고</h1>
+    <div class="subtitle">전주(7.20~7.24) · 이번주(7.27~7.31) · 📅 보고일: 2026. 07. 27</div>
+    <a href="./인사이트보고서_20260727.html" class="ins-link">📈 이 주차 인사이트 보고서 보기 →</a>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab(event,'overview')">📊 전체 현황</button>
+  <button class="tab-btn" onclick="showTab(event,'ip')">🎭 IP사업실</button>
+  <button class="tab-btn" onclick="showTab(event,'publish')">📚 출판개발실</button>
+  <button class="tab-btn" onclick="showTab(event,'edu')">🎓 교육사업실</button>
+  <button class="tab-btn" onclick="showTab(event,'platform')">💻 플랫폼개발실</button>
+  <button class="tab-btn" onclick="showTab(event,'mgmt')">🏢 경영지원실</button>
+</div>
+
+<!-- ============ TAB 1: 전체 현황 ============ -->
+<div id="tab-overview" class="tab-content active">
+
+  <div class="kpi-grid">
+    <div class="kpi-card blue" style="border-color:#6cb6e8;">
+      <div class="kpi-label">교육사업실 실적(7월)</div>
+      <div class="kpi-value">5.8억원</div>
+      <div class="kpi-sub">계획 9.0억원 · 7/26 기준</div>
+      <div class="kpi-progress">
+        <div class="kpi-progress-head"><span>달성률</span><span style="color:#2f7fc2">63.9%</span></div>
+        <div class="kpi-progress-track"><div class="kpi-progress-fill" style="width:63.9%;background:#6cb6e8;"></div></div>
+      </div>
+    </div>
+    <div class="kpi-card orange" style="border-color:#1f5fb0;">
+      <div class="kpi-label">교육사업실 누계(1~7월)</div>
+      <div class="kpi-value">76.9억원</div>
+      <div class="kpi-sub">계획 87.4억원</div>
+      <div class="kpi-progress">
+        <div class="kpi-progress-head"><span>달성률</span><span style="color:#1f5fb0">88.0%</span></div>
+        <div class="kpi-progress-track"><div class="kpi-progress-fill" style="width:88%;background:#1f5fb0;"></div></div>
+      </div>
+    </div>
+    <div class="kpi-card green" style="border-color:#f9b96a;">
+      <div class="kpi-label">출판 실적(7월)</div>
+      <div class="kpi-value">3.2억원</div>
+      <div class="kpi-sub">계획 4.3억원</div>
+      <div class="kpi-progress">
+        <div class="kpi-progress-head"><span>달성률</span><span style="color:#c9791a">73%</span></div>
+        <div class="kpi-progress-track"><div class="kpi-progress-fill" style="width:73%;background:#f9b96a;"></div></div>
+      </div>
+    </div>
+    <div class="kpi-card purple" style="border-color:#f77f00;">
+      <div class="kpi-label">IP사업실 누계(1~7월)</div>
+      <div class="kpi-value">44.2억원</div>
+      <div class="kpi-sub">계획 48.5억원 (뮤지컬+출판+IP)</div>
+      <div class="kpi-progress">
+        <div class="kpi-progress-head"><span>달성률</span><span style="color:#d66f00">91%</span></div>
+        <div class="kpi-progress-track"><div class="kpi-progress-fill" style="width:91%;background:#f77f00;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">매출 현황 — 7월 당월 + 1~7월 누계</div>
+    <table class="task-table">
+      <thead>
+        <tr>
+          <th>부문</th>
+          <th style="text-align:center">7월 계획</th>
+          <th style="text-align:center">7월 실적</th>
+          <th style="text-align:center">당월 달성</th>
+          <th style="text-align:center">누계 실적</th>
+          <th style="text-align:center">누계 달성</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>📚 출판</td><td style="text-align:center">4.3억</td><td style="text-align:center">3.2억</td><td style="text-align:center"><span class="status-badge s-mid">73%</span></td><td style="text-align:center">35.2억</td><td style="text-align:center"><span class="status-badge s-done">103%</span></td></tr>
+        <tr><td>💡 IP라이선싱</td><td style="text-align:center">0.1억</td><td style="text-align:center">0.2억</td><td style="text-align:center"><span class="status-badge s-done">117%</span></td><td style="text-align:center">1.6억</td><td style="text-align:center"><span class="status-badge s-done">150%</span></td></tr>
+        <tr><td>🎭 뮤지컬</td><td style="text-align:center">0.5억</td><td style="text-align:center">0.0억</td><td style="text-align:center"><span class="status-badge s-low">0%</span></td><td style="text-align:center">7.4억</td><td style="text-align:center"><span class="status-badge s-low">56%</span></td></tr>
+        <tr><td>🎓 교육</td><td style="text-align:center">9.0억</td><td style="text-align:center">5.8억</td><td style="text-align:center"><span class="status-badge s-mid">63.9%</span></td><td style="text-align:center">76.9억</td><td style="text-align:center"><span class="status-badge s-high">88.0%</span></td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:#999;margin-top:10px;">※ 교육은 7/26 기준(당월 5.8억·누계 76.9억), 나머지는 7월 실적 반영. 출판·IP·교육 견조, 뮤지컬만 미달(누계 56%).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">주요 이슈 · 공유사항</div>
+    <div class="issue-grid">
+      <div class="issue-card green">
+        <div class="issue-title" style="color:#065f46">🎭 삼국지 공연 대관신청 완료 (30→100%)</div>
+        <div class="issue-body">지난주 진행 중이던 삼국지 대모험 공연 대관신청이 100% 완료(7/31). 공연장 확보가 마무리 단계로, 하반기 뮤지컬 매출(현재 누계 56%)의 반등 발판 마련.</div>
+      </div>
+      <div class="issue-card green">
+        <div class="issue-title" style="color:#065f46">📚 출판·IP 누계 계획 초과 유지</div>
+        <div class="issue-body">출판 누계 103%(35.2억), IP 150%(1.6억). 고전 대모험 공동구매 매출 5,800만원, 그리스로마 8월 광고 완료. 한국사38권 인디고마감 90%로 신간 임박.</div>
+      </div>
+      <div class="issue-card red">
+        <div class="issue-title" style="color:#991b1b">📉 콘텐츠2팀(국어/논술) 진행률 다수 후퇴</div>
+        <div class="issue-body">국어 기본 100→60%, 국어 심화 커리큘럼 90→20%, 논술 시즌2 80→30%로 동시 후퇴. 커리큘럼 재정비 또는 단계 재분류로 추정 — 오픈 일정 영향 확인 필요.</div>
+      </div>
+      <div class="issue-card blue">
+        <div class="issue-title" style="color:#1e40af">🚀 과목추가 영어 100% · 단꿈m TF 진행</div>
+        <div class="issue-body">과목추가(영어) 90→100%로 8/7 오픈 준비 완료. 단꿈m 자회사 설립 TF 후속안 진행, 플랫폼 단꿈m 기획 20%. 임시주주총회 개최 완료(7/20).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">이번 주 주요 마감 일정 (7.27~7.31)</div>
+    <table class="task-table">
+      <thead>
+        <tr>
+          <th style="width:80px">실</th>
+          <th style="width:100px">팀</th>
+          <th>업무</th>
+          <th style="width:90px">기한</th>
+          <th style="width:70px">진행률</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>IP사업실</td><td>공연팀</td><td>삼국지 대모험 공연 대관신청</td><td>2026.07.31</td><td><span class="status-badge s-done">100%</span></td></tr>
+        <tr><td>IP사업실</td><td>영업팀</td><td>고전 대모험 독후감 대회 / 공동구매</td><td>2026.07.31</td><td><span class="status-badge s-done">100%</span></td></tr>
+        <tr><td>IP사업실</td><td>영업팀</td><td>수학 대모험 퀴즈 이벤트</td><td>2026.07.31</td><td><span class="status-badge s-high">80%</span></td></tr>
+        <tr><td>출판개발실</td><td>디자인팀</td><td>한국사38권 인디고마감</td><td>2026.08.24</td><td><span class="status-badge s-high">90%</span></td></tr>
+        <tr><td>교육사업실</td><td>마케팅팀</td><td>네이버 키즈페스타 스마트스토어 세팅</td><td>2026.07.31</td><td><span class="status-badge s-done">완료</span></td></tr>
+        <tr><td>교육사업실</td><td>콘텐츠2팀</td><td>논술 시즌2 1주 원고</td><td>2026.07.31</td><td><span class="status-badge s-low">30%</span></td></tr>
+        <tr><td>교육사업실</td><td>콘텐츠3팀</td><td>수학 5,6학년 교재배열 / 기초 연산 6학년</td><td>2026.07.31</td><td><span class="status-badge s-done">100%</span></td></tr>
+        <tr><td>플랫폼개발실</td><td>개발팀</td><td>과목추가(영어) 개발 (8/7 오픈)</td><td>2026.08.07</td><td><span class="status-badge s-done">100%</span></td></tr>
+        <tr><td>경영지원실</td><td>재무팀</td><td>부가세 신고</td><td>2026.07.23</td><td><span class="status-badge s-mid">50%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ TAB 2: IP사업실 ============ -->
+<div id="tab-ip" class="tab-content">
+
+  <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="kpi-card orange">
+      <div class="kpi-label">📚 출판 실적</div>
+      <div style="display:flex;justify-content:space-between;margin-top:14px;gap:8px;">
+        <div>
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">7월 당월</div>
+          <div style="font-size:20px;font-weight:800;color:#1a1a2e;">3.2억원</div>
+          <div style="font-size:11px;color:#f77f00;margin-top:3px;">계획 4.3억 · 73%</div>
+        </div>
+        <div style="width:1px;background:#eee;flex-shrink:0;"></div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">1~7월 누계</div>
+          <div style="font-size:20px;font-weight:800;color:#1a1a2e;">35.2억원</div>
+          <div style="font-size:11px;color:#06d6a0;margin-top:3px;">계획 34.3억 · 103%</div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">🎭 공연 실적</div>
+      <div style="display:flex;justify-content:space-between;margin-top:14px;gap:8px;">
+        <div>
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">7월 당월</div>
+          <div style="font-size:20px;font-weight:800;color:#1a1a2e;">0.0억원</div>
+          <div style="font-size:11px;color:#e63946;margin-top:3px;">계획 0.5억 · 0%</div>
+        </div>
+        <div style="width:1px;background:#eee;flex-shrink:0;"></div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">1~7월 누계</div>
+          <div style="font-size:20px;font-weight:800;color:#1a1a2e;">7.4억원</div>
+          <div style="font-size:11px;color:#e63946;margin-top:3px;">계획 13.2억 · 56%</div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">💡 IP 실적</div>
+      <div style="display:flex;justify-content:space-between;margin-top:14px;gap:8px;">
+        <div>
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">7월 당월</div>
+          <div style="font-size:20px;font-weight:800;color:#1a1a2e;">0.2억원</div>
+          <div style="font-size:11px;color:#06d6a0;margin-top:3px;">계획 0.1억 · 117%</div>
+        </div>
+        <div style="width:1px;background:#eee;flex-shrink:0;"></div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">1~7월 누계</div>
+          <div style="font-size:20px;font-weight:800;color:#1a1a2e;">1.6억원</div>
+          <div style="font-size:11px;color:#06d6a0;margin-top:3px;">계획 1.1억 · 150%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">팀별 진행 현황</div>
+    <div class="team-progress-grid">
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🎬 IP팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">지나쌤 캐릭터 및 계약서</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">설민석TV 유튜브 기획</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">100%</span></div>
+          <div class="prog-line"><span class="prog-line-name">하나은행 협력 아이디어</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:80%"></div></div><span class="prog-line-val up">80%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">복댕이 상표등록 검토 (11/30)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:70%"></div></div><span class="prog-line-val up">70%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🎭 공연팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">삼국지 대모험 공연 대관신청 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📊 영업/마케팅팀 (코믹스)</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">고전 대모험 독후감 대회 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">100%</span></div>
+          <div class="prog-line"><span class="prog-line-name">고전 대모험 공동구매 (매출 5,800만원)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">수학 대모험 퀴즈 이벤트 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:80%"></div></div><span class="prog-line-val up">80%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📣 채널 운영</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">단꿈TV 채널 개편 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">설민석TV 안창호 영상 (7/27)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 3: 출판개발실 ============ -->
+<div id="tab-publish" class="tab-content">
+
+  <div class="section">
+    <div class="section-title">시리즈별 제작 진행률</div>
+    <div class="team-progress-grid">
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📕 한국사 대모험</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">38권 - 인디고마감 (인쇄 임박, 8/24)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:90%"></div></div><span class="prog-line-val up">90%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📘 세계사 대모험</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">30권 - 1화 (9/14)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:60%"></div></div><span class="prog-line-val">60%</span></div>
+          <div class="prog-line"><span class="prog-line-name">31권 (12/14)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:30%"></div></div><span class="prog-line-val">30%</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📗 그리스로마신화 대모험</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">8월 광고 (7/24)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">완료</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📙 수학 대모험</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">4권 (9/7)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:60%"></div></div><span class="prog-line-val">60%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 4: 교육사업실 ============ -->
+<div id="tab-edu" class="tab-content">
+
+  <div class="section">
+    <div class="section-title">팀별 진행 현황 (이번주 기준)</div>
+    <div class="team-progress-grid">
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📋 기획운영팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">단꿈에게 바란다 메뉴 (7/30)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">영어 콘텐츠 강의 (7/22)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:30%"></div></div><span class="prog-line-val">30%</span></div>
+          <div class="prog-line"><span class="prog-line-name">AX 관련 요구사항 등록 (8/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:10%"></div></div><span class="prog-line-val">10%</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">📣 마케팅팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">네이버 키즈페스타 세팅 (7/28~31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">완료</span></div>
+          <div class="prog-line"><span class="prog-line-name">도전 골든벨 행사 리뷰 (8/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:10%"></div></div><span class="prog-line-val down">10%↓</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🏯 콘텐츠1팀 (한국사/독서)</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">한국사 첫걸음 46강 촬영 (7/22)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">독서 시즌2 17강 촬영 (10/30)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:75%"></div></div><span class="prog-line-val up">75%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">한국사 11,12강 검수 (7/29)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:5%"></div></div><span class="prog-line-val">5%</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">✍️ 콘텐츠2팀 (국어/논술)</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">국어 기본 12-1,2 PDR (7/29)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:60%"></div></div><span class="prog-line-val down">60%↓</span></div>
+          <div class="prog-line"><span class="prog-line-name">국어 심화 커리큘럼 전달 (8/7)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:20%"></div></div><span class="prog-line-val down">20%↓</span></div>
+          <div class="prog-line"><span class="prog-line-name">논술 시즌2 1주 원고 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:30%"></div></div><span class="prog-line-val down">30%↓</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🧮 콘텐츠3팀 (수학)</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">수학 5,6학년 교재배열 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">기초 연산 6학년 2학기 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+          <div class="prog-line"><span class="prog-line-name">정주연 심화 3,4학년 (8/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:50%"></div></div><span class="prog-line-val up">50%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🎬 영상팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">한국사 첫걸음 39강 편집 (7/27)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">완료</span></div>
+          <div class="prog-line"><span class="prog-line-name">독서 시즌2 10강 편집 (7/22)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">완료</span></div>
+          <div class="prog-line"><span class="prog-line-name">영어 심화 Unit 13~15 편집 (7/27)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">완료</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 5: 플랫폼개발실 ============ -->
+<div id="tab-platform" class="tab-content">
+
+  <div class="section">
+    <div class="section-title">개발 항목별 진행 현황</div>
+    <div class="team-progress-grid">
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">➕ 과목추가(영어)</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">개발 완료 (8/7 오픈 준비)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val up">100%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🗺 하반기 과제</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">스펙 정리 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:80%"></div></div><span class="prog-line-val up">80%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🆕 단꿈m 기획</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">기획 (10/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:20%"></div></div><span class="prog-line-val up">20%↑</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🕐 시간표 개선</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">개선 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-zero" style="width:20%"></div></div><span class="prog-line-val up">20%↑</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 6: 경영지원실 ============ -->
+<div id="tab-mgmt" class="tab-content">
+
+  <div class="section">
+    <div class="section-title">팀별 진행 현황</div>
+    <div class="team-progress-grid">
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">🏢 전략팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">IBK벤처 투자 IR (7/24)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">완료</span></div>
+          <div class="prog-line"><span class="prog-line-name">임시주주총회 개최 (7/20)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:100%"></div></div><span class="prog-line-val">완료</span></div>
+          <div class="prog-line"><span class="prog-line-name">단꿈m 자회사 설립 TF 후속안</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:50%"></div></div><span class="prog-line-val">진행중</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">💰 재무팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">부가세 신고 (7/23)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-mid" style="width:50%"></div></div><span class="prog-line-val">50%</span></div>
+        </div>
+      </div>
+      <div class="team-prog-card">
+        <div class="team-prog-head"><div class="team-prog-name">👥 인사팀</div></div>
+        <div class="team-prog-items">
+          <div class="prog-line"><span class="prog-line-name">임직원 기기 업데이트 (7/31)</span><div class="prog-line-mini"><div class="prog-line-mini-fill c-high" style="width:80%"></div></div><span class="prog-line-val up">80%↑</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(e, id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if (e) e.target.classList.add('active');
+  else {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) {
+        b.classList.add('active');
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>
